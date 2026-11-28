@@ -23,19 +23,40 @@ Compare current stock levels across retail branches against target stock levels,
 
 ## 5. Flowchart
 ```
-[Start] --> [Compute Diff = Current - Target]
-               |
-               v
-     [Loop Shortage Branches (Diff < 0)] --> (None) --> [Print Final Stock] --> [Stop]
-               |
-               v
-     [Loop Surplus Branches (Diff > 0)]
-               |
-               v
- [Qty = min(Shortage, Surplus, Max_Cap)]
-               |
-               v
- [Update Stocks & Record Transfer]
++-------------------------------------------------------+
+|                        [START]                        |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|             Compute Diff = Current - Target           |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|         Loop Shortage Branches (Diff < 0)             |
++-------------------------------------------------------+
+            |                                   |
+     (Shortage Branch)                       (None)
+            |                                   |
+            v                                   v
++---------------------------------------+ +-------------+
+|      Loop Surplus Branches (Diff > 0) | | Print Final |
++---------------------------------------+ | Stock       |
+            |                   |         +-------------+
+     (Surplus Branch)     (Done Surplus)        |
+            |                   |               v
+            v                   |         +-----------+
++---------------------------------------+ |  [STOP]   |
+| Qty = min(Shortage, Surplus, Max_Cap) | +-----------+
++---------------------------------------+       |
+            |                                   |
+            v                                   |
++---------------------------------------+       |
+|    Update Stocks & Record Transfer    |       |
++---------------------------------------+       |
+            |                                   |
+            +------> (Next Surplus / Shortage) -+
 ```
 
 ## 6. Pseudocode
