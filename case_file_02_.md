@@ -1,4 +1,4 @@
-# Case Study 11: Examination Result and Grace-Mark Validation
+# Case Study 02: Examination Result and Grace-Mark Validation
 
 ## 1. Problem Statement
 Develop a system to evaluate student marks across multiple subjects, enforce subject-wise pass marks, allocate limited grace marks without exceeding maximum marks per subject, and assign final grades.
@@ -24,28 +24,63 @@ Develop a system to evaluate student marks across multiple subjects, enforce sub
 
 ## 5. Flowchart
 ```
-[Start] --> [Load Student Marks List]
-               |
-               v
-     [Loop Over Each Student] --> (Done) --> [Stop]
-               |
-               v
-   [Check Subjects < 40 (35..39)]
-               |
-        /--(Grace >= Needed?)--      Yes                      No
-       |                        |
-[Add Grace to 40]        [Leave Unchanged]
-       \___________ ___________/
-                   |
-                   v
-       [All Subjects >= 40?]
-            /                     Yes            No
-           |              |
-   [Compute Grade]   [Mark FAIL]
-           \______ ______/
-                  |
-                  v
-           [Print Report]
++-------------------------------------------------------+
+|                        [START]                        |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|                Load Student Marks List                |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|                Loop Over Each Student                 |
++-------------------------------------------------------+
+            |                                   |
+     (More Students)                         (Done)
+            |                                   |
+            v                                   v
++-----------------------+               +---------------+
+| Check Subjects < 40   |               |    [STOP]     |
+| (Range 35..39)        |               +---------------+
++-----------------------+
+            |
+            v
+     /-------------\
+    / Grace >=      \
+   /  Needed?        \
+   \-----------------/
+     /             \
+   Yes              No
+   /                 \
+  v                   v
++-------------------+ +---------------+
+| Add Grace to 40   | | Leave         |
+|                   | | Unchanged     |
++-------------------+ +---------------+
+         \                   /
+          \                 /
+           v               v
+     /-------------\
+    / All Subjects  \
+   /  >= 40?         \
+   \-----------------/
+     /             \
+   Yes              No
+   /                 \
+  v                   v
++-------------------+ +---------------+
+| Compute Grade     | | Mark FAIL     |
++-------------------+ +---------------+
+         \                   /
+          \                 /
+           v               v
++-------------------------------------------------------+
+|                     Print Report                      |
++-------------------------------------------------------+
+                            |
+                            +------> (Back to Loop Over Each Student)
 ```
 
 ## 6. Pseudocode
