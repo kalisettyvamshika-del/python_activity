@@ -1,4 +1,4 @@
-# Case Study 02: Progressive Electricity Billing
+# Case Study 01: Progressive Electricity Billing
 
 ## 1. Problem Statement
 Design a Python program that calculates monthly household electricity bills using progressive consumption slabs, fixed charges, surcharges, and rebates, and compares bills across multiple months to flag unusual consumption increases.
@@ -25,27 +25,60 @@ Design a Python program that calculates monthly household electricity bills usin
 
 ## 5. Flowchart
 ```
-[Start] --> [Input Monthly Units List]
-               |
-               v
-       [Loop Through Months] --> (End of List) --> [Display Summary] --> [Stop]
-               |
-               v
-     [Compute Slab Energy Cost]
-               |
-               v
-  [Add Fixed Charge + Rebate/Surcharge]
-               |
-               v
-    [Compare With Previous Month]
-               |
-        /-----(>25%?)-----      Yes                 No
-       |                   |
-[Flag Unusual Spike]  [Mark Normal]
-       \________ _________/
-                |
-                v
-         [Next Month]
++-------------------------------------------------------+
+|                        [START]                        |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|              Input Monthly Units List                 |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|                Loop Through Months                    |
++-------------------------------------------------------+
+            |                                   |
+     (More Months)                     (End of List)
+            |                                   |
+            v                                   v
++-----------------------+       +-----------------------+
+| Compute Slab Energy   |       |    Display Summary    |
+| Cost                  |       +-----------------------+
++-----------------------+                       |
+            |                                   v
+            v                           +---------------+
++-----------------------+               |    [STOP]     |
+| Add Fixed Charge +    |               +---------------+
+| Rebate / Surcharge    |
++-----------------------+
+            |
+            v
++-----------------------+
+| Compare With Previous |
+| Month                 |
++-----------------------+
+            |
+            v
+     /-------------\
+    /  Spike > 25%? \
+    \---------------/
+     /             \
+   Yes              No
+   /                 \
+  v                   v
++-------------------+ +---------------+
+| Flag Unusual      | | Mark Normal   |
+| Spike             | +---------------+
++-------------------+         |
+         \                   /
+          \                 /
+           v               v
++-------------------------------------------------------+
+|                      Next Month                       |
++-------------------------------------------------------+
+                            |
+                            +------> (Back to Loop Through Months)
 ```
 
 ## 6. Pseudocode
