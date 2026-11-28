@@ -1,4 +1,4 @@
-# Case Study 27: Advanced Numeric Pattern Generator
+# Case Study 04: Advanced Numeric Pattern Generator
 
 ## 1. Problem Statement
 Generate a symmetric hollow numeric diamond pattern based on user-specified height/dimension, incorporating input validation and precise spacing alignment.
@@ -21,22 +21,50 @@ Generate a symmetric hollow numeric diamond pattern based on user-specified heig
 
 ## 5. Flowchart
 ```
-[Start] --> [Read Dimension N]
-               |
-               v
-       [2 <= N <= 9 ?] --(No)--> [Print Error] --> [Stop]
-               | Yes
-               v
-   [Loop i = 1 to N (Upper Half)]
-               |
-               v
-   [Print Leading Spaces + Edge Digits]
-               |
-               v
-  [Loop i = N-1 down to 1 (Lower Half)]
-               |
-               v
-   [Print Leading Spaces + Edge Digits] --> [Stop]
++-------------------------------------------------------+
+|                        [START]                        |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|                    Read Dimension N                   |
++-------------------------------------------------------+
+                            |
+                            v
+     /-------------\                    +---------------+
+    / 2 <= N <= 9?  \--------(No)------>|  Print Error  |
+    \---------------/                   +---------------+
+            |                                   |
+          (Yes)                                 v
+            |                           +---------------+
+            v                           |    [STOP]     |
++-------------------------------------------------------+
+|              Loop i = 1 to N (Upper Half)             |
++-------------------------------------------------------+
+            |                                   |
+     (Current i)                          (Loop Done)
+            |                                   |
+            v                                   |
++-----------------------+                       |
+| Print Leading Spaces  |                       |
+| + Edge Digits         |                       |
++-----------------------+                       |
+            |                                   |
+            +------> (Next i)                   |
+                                                v
+                        +---------------------------------------+
+                        |   Loop i = N - 1 down to 1 (Lower Half)   |
+                        +---------------------------------------+
+                                    |                       |
+                             (Current i)             (Loop Done)
+                                    |                       |
+                                    v                       v
+                        +-----------------------+   +---------------+
+                        | Print Leading Spaces  |   |    [STOP]     |
+                        | + Edge Digits         |   +---------------+
+                        +-----------------------+
+                                    |
+                                    +------> (Next i)
 ```
 
 ## 6. Pseudocode
