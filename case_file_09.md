@@ -23,24 +23,50 @@ Process sequential canteen customer orders, calculate bills, deduct ordered quan
 
 ## 5. Flowchart
 ```
-[Start] --> [Init Menu, Prices, Stock, Revenue=0]
-               |
-               v
-       [Next Customer Order] --> (None) --> [Print Daily Summary] --> [Stop]
-               |
-               v
-     [Loop Item, Qty in Order]
-               |
-               v
-       [Qty <= Stock[Item]?]
-          /                     Yes              No
-         |                |
-[Deduct Stock,      [Reject Item]
- Add to Bill]
-         \_______ _______/
-                 |
-                 v
-       [Update Total Revenue]
++-------------------------------------------------------+
+|                        [START]                        |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|       Init Menu, Prices, Stock, Revenue = 0           |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|                 Next Customer Order                   |
++-------------------------------------------------------+
+            |                                   |
+        (Order)                              (None)
+            |                                   |
+            v                                   v
++---------------------------------------+ +-------------+
+|         Loop Item, Qty in Order       | | Print Daily |
++---------------------------------------+ | Summary     |
+            |                   |         +-------------+
+     (Next Item, Qty)     (Order Done)          |
+            |                   |               v
+            v                   |         +-----------+
+     /-------------\            |         |  [STOP]   |
+    / Qty <=        \           |         +-----------+
+   /  Stock[Item]?   \          |
+   \-----------------/          |
+     /             \            |
+   Yes              No          |
+   /                 \          |
+  v                   v         |
++-------------------+ +---------------+
+| Deduct Stock,     | | Reject Item   |
+| Add to Bill       | +---------------+
++-------------------+         |
+         \                   /
+          \                 /
+           v               v
++---------------------------------------+
+|         Update Total Revenue          |
++---------------------------------------+
+            |
+            +------> (Back to Next Customer Order)
 ```
 
 ## 6. Pseudocode
