@@ -1,4 +1,4 @@
-# Case Study 29: Password Policy Validation Engine
+# Case Study 05: Password Policy Validation Engine
 
 ## 1. Problem Statement
 Evaluate candidate password strings against length, uppercase, lowercase, digit, special character, consecutive repetition, and prohibited substring rules, reporting every failed condition.
@@ -25,26 +25,47 @@ Evaluate candidate password strings against length, uppercase, lowercase, digit,
 
 ## 5. Flowchart
 ```
-[Start] --> [Read Password String]
-               |
-               v
-       [Check Length >= 8]
-               |
-               v
-  [Scan Chars: Upper/Lower/Digit/Special/Repeat]
-               |
-               v
-   [Check Forbidden Substrings]
-               |
-               v
-       [Errors Empty?]
-         /                Yes          No
-        |            |
- [Print VALID]  [Print All Failed Rules]
-        \_____ _____/
-              |
-              v
-           [Stop]
++-------------------------------------------------------+
+|                        [START]                        |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|                 Read Password String                  |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|                 Check Length >= 8                     |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+| Scan Chars: Upper / Lower / Digit / Special / Repeat  |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|              Check Forbidden Substrings               |
++-------------------------------------------------------+
+                            |
+                            v
+                     /-------------\
+                    / Errors Empty? \
+                    \---------------/
+                     /             \
+                   Yes              No
+                   /                 \
+                  v                   v
+        +---------------+   +-----------------------+
+        | Print VALID   |   | Print All Failed Rules|
+        +---------------+   +-----------------------+
+                 \                   /
+                  \                 /
+                   v               v
+            +-----------------------------+
+            |           [STOP]            |
+            +-----------------------------+
 ```
 
 ## 6. Pseudocode
