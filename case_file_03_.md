@@ -1,4 +1,4 @@
-# Case Study 13: ATM Transaction Sequence Simulation
+# Case Study 03: ATM Transaction Sequence Simulation
 
 ## 1. Problem Statement
 Simulate a sequence of ATM deposits and withdrawals while maintaining account balance, enforcing per-transaction and daily withdrawal limits, rejecting invalid operations, and generating a transaction summary.
@@ -24,22 +24,55 @@ Simulate a sequence of ATM deposits and withdrawals while maintaining account ba
 
 ## 5. Flowchart
 ```
-[Start] --> [Init Balance=15000, Daily=0]
-               |
-               v
-     [Next Transaction (Type, Amt)] --> (None) --> [Print Summary] --> [Stop]
-               |
-               v
-      [Amt > 0 & Amt % 100 == 0?] --(No)--> [Reject: Invalid Amt]
-               | Yes
-               v
-        [Type == DEPOSIT?] --(Yes)--> [Balance += Amt]
-               | No
-               v
-   [Amt<=10k & Daily+Amt<=20k & Amt<=Bal?] --(No)--> [Reject: Limit/Funds]
-               | Yes
-               v
-   [Balance -= Amt, Daily += Amt]
++-------------------------------------------------------+
+|                        [START]                        |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|             Init Balance = 15000, Daily = 0           |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|             Next Transaction (Type, Amt)              |
++-------------------------------------------------------+
+            |                                   |
+     (Transaction)                          (None)
+            |                                   |
+            v                                   v
+     /-------------\                    +---------------+
+    / Amt > 0 &     \                   | Print Summary |
+   /  Amt % 100 == 0?\                  +---------------+
+   \-----------------/                          |
+     /             \                            v
+   Yes              No                  +---------------+
+   /                 \                  |    [STOP]     |
+  v                   v                 +---------------+
++---------------+ +-------------------+
+| Type ==       | | Reject: Invalid   |
+| DEPOSIT?      | | Amt               |
++---------------+ +-------------------+
+     /       \          |
+   Yes        No        |
+   /           \        |
+  v             v       |
++-----------+ /---------------------------------\
+| Balance +=| | Amt <= 10k & Daily + Amt <= 20k |
+| Amt       | | & Amt <= Balance?               |
++-----------+ \---------------------------------/
+     |          /               \
+     |        Yes                No
+     |        /                   \
+     |       v                     v
+     | +-----------------------+ +-------------------+
+     | | Balance -= Amt,       | | Reject: Limit /   |
+     | | Daily += Amt          | | Funds             |
+     | +-----------------------+ +-------------------+
+     |       |                           |
+     +-------+---------------------------+
+             |
+             +------> (Back to Next Transaction)
 ```
 
 ## 6. Pseudocode
