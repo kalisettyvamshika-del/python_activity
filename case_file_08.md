@@ -21,23 +21,52 @@ Store employee shift schedules as tuples containing employee ID, day, start hour
 
 ## 5. Flowchart
 ```
-[Start] --> [Load Shift Tuples List]
-               |
-               v
-   [Outer Loop i = 0..n-2; Inner Loop j = i+1..n-1]
-               |
-               v
-     [Unpack Tuple i and Tuple j]
-               |
-               v
- [Same Emp & Same Day & Start1<End2 & Start2<End1?]
-         /                                    Yes                              No
-        |                                |
-[Report Shift Conflict]            [Continue Loop]
-        \_______________ _______________/
-                        |
-                        v
-                     [Stop]
++-------------------------------------------------------+
+|                        [START]                        |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|                Load Shift Tuples List                 |
++-------------------------------------------------------+
+                            |
+                            v
++-------------------------------------------------------+
+|    Outer Loop i = 0..n-2; Inner Loop j = i+1..n-1     |
++-------------------------------------------------------+
+            |                                   |
+      (Next Pair i, j)                    (Loops Done)
+            |                                   |
+            v                                   |
++-----------------------+                       |
+| Unpack Tuple i and    |                       |
+| Tuple j               |                       |
++-----------------------+                       |
+            |                                   |
+            v                                   |
+     /-------------\                            |
+    / Same Emp &    \                           |
+   /  Same Day &     \                          |
+  /   Start1 < End2 & \                         |
+ /    Start2 < End1?   \                        |
+ \---------------------/                        |
+     /             \                            |
+   Yes              No                          |
+   /                 \                          |
+  v                   v                         |
++-------------------+ +---------------+         |
+| Report Shift      | | Continue Loop |         |
+| Conflict          | +---------------+         |
++-------------------+         |                 |
+         \                   /                  |
+          \                 /                   |
+           +-------+-------+                    |
+                   |                            |
+                   +------> (Next j / i)        |
+                                                v
+                                        +---------------+
+                                        |    [STOP]     |
+                                        +---------------+
 ```
 
 ## 6. Pseudocode
